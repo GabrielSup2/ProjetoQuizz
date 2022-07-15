@@ -14,13 +14,31 @@ form.addEventListener('submit', event => {
     form.inputQuestion4.value
   ]
 
-  userAnswers.forEach((userAnswer, index) => {
+  
+  const verifyiSaCorrectAnswer = (userAnswer, index) => {
     if (userAnswer === correctAnswers[index]) {
       score += 25
     }
-  })
+  }
 
-finalResult.querySelector("span").textContent = `${score}%`
+  userAnswers.forEach(verifyiSaCorrectAnswer)
+
+scrollTo(0,0)
+
+
 finalResult.classList.remove("d-none")
+
+let counter = 0;
+
+const timer = setInterval(() => {
+
+  if(counter === score){
+    clearInterval(timer)
+  }
+
+  finalResult.querySelector("span").textContent = `${counter}%`
+  counter++
+  
+}, 10);
 
 })
